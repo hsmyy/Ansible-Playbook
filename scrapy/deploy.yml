@@ -1,0 +1,8 @@
+---
+#
+
+- hosts: crawler
+  remote_user: ubuntu
+  roles:
+    - deploy
+

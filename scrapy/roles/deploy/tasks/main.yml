@@ -1,0 +1,46 @@
+---
+#
+
+- name: add ppa
+  shell: apt-key adv --keyserver hkp://keyserver.ubuntu.com:80 --recv 627220E7
+  sudo: yes
+
+- name: append source list
+  shell: echo 'deb http://archive.scrapy.org/ubuntu scrapy main' | sudo tee /etc/apt/sources.list.d/scrapy.list
+  sudo: yes
+
+- name: install package
+  apt: name= {{ item }} update_cache=yes
+  sudo: yes
+  with_items:
+    - python-dev
+    - git
+    - python-pip
+    - libxml2-dev
+    - libxslt1-dev
+    - python-dev
+    - python-lxml
+    - libz-dev
+
+- name: install pip
+  pip: name= {{ item }}
+  sudo: yes
+  with_items:
+    - scrapy
+    - redis
+    - mongo
+    - w3lib
+    - lxml
+    - cssselect
+    - twisted
+    - scrapy_redis
+ 
+
+- name: install scrapyd
+  apt: name=scrapyd update_cache=yes
+  sudo: yes
+
+- name: download project
+  git: repo=https://github.com/kaze13/scrapy-zhihu.git
+       dest=/home/ubuntu
+       version=mongo
