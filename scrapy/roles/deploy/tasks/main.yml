@@ -9,8 +9,12 @@
   shell: echo 'deb http://archive.scrapy.org/ubuntu scrapy main' | sudo tee /etc/apt/sources.list.d/scrapy.list
   sudo: yes
 
+- name: update apt
+  apt: update_cache=yes
+  sudo: yes
+
 - name: install package
-  apt: name= {{ item }} update_cache=yes
+  apt: name={{ item }}
   sudo: yes
   with_items:
     - python-dev
@@ -21,9 +25,11 @@
     - python-dev
     - python-lxml
     - libz-dev
+    - scrapyd
+    - scrapyd-deploy
 
 - name: install pip
-  pip: name= {{ item }}
+  pip: name={{ item }}
   sudo: yes
   with_items:
     - scrapy
@@ -34,13 +40,30 @@
     - cssselect
     - twisted
     - scrapy_redis
- 
+    - service_identity
 
-- name: install scrapyd
-  apt: name=scrapyd update_cache=yes
-  sudo: yes
+- name: make directory
+  shell: mkdir -p /home/ubuntu/python
 
 - name: download project
   git: repo=https://github.com/kaze13/scrapy-zhihu.git
-       dest=/home/ubuntu
+       dest=/home/ubuntu/python/scrapy-zhihu
        version=mongo
+
+- name: deploy account
+  template: src=account.py  dest=/home/ubuntu/python/scrapy-zhihu/zhihu/account.py
+
+- name: deploy setting
+  template: src=settings.py dest=/home/ubuntu/python/scrapy-zhihu/zhihu/settings.py
+
+- name: edit scrapyd conf
+  template: src=scrapyd.conf dest=/etc/scrapyd/scrapyd.conf
+  sudo: yes
+
+- name: start scrapyd
+  service: name=scrapyd state=restarted
+  sudo: yes
+
+- name: deploy spider
+  shell: scrapyd-deploy scrapyd2 -p zhihu chdir=/home/ubuntu/python/scrapy-zhihu
+  

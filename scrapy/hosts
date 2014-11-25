@@ -1,4 +1,7 @@
-[crawler]
-192.168.140.61 user='a' password='b'
-192.168.140.41 user='a' password='b'
-192.168.140.54 user='a' password='b'
+[inner]
+#192.168.140.61 user='a' password='b'
+#192.168.140.41 user='a' password='b'
+#192.168.140.54 user='a' password='b'
+192.168.140.47 user='554608897@qq.com' password='123asd123'
+
+[outer]

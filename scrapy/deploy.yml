@@ -1,7 +1,12 @@
 ---
 #
 
-- hosts: crawler
+- hosts: inner
+  remote_user: ubuntu
+  roles:
+    - deploy
+
+- hosts: outer
   remote_user: ubuntu
   roles:
     - deploy
