@@ -1,0 +1,6 @@
+---
+#
+
+- name: stop
+  service: name=scrapyd state=restarted
+  sudo: yes

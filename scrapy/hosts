@@ -1,7 +1,13 @@
 [inner]
-#192.168.140.61 user='a' password='b'
-#192.168.140.41 user='a' password='b'
-#192.168.140.54 user='a' password='b'
 192.168.140.47 user='554608897@qq.com' password='123asd123'
+192.168.140.54 user='yyluo_sep.27@hotmail.com' password='damiyy66526844'
+192.168.140.61 user='cml_hawke0@163.com' password='56121353'
+192.168.140.41 user='fengchao_ict@163.com' password='123asd123'
+
 
 [outer]
+54.65.120.82 user='feng_c@worksap.co.jp' password='123asd123'
+54.65.129.223 user='bigrice20@gmail.com' password='kaze131021'
+54.65.129.193 user='393108300@qq.com' password='kaze131021'
+
+# user='chen.mili.rey@gmail.com' password='kaze131021'

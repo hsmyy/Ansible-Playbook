@@ -50,20 +50,3 @@
        dest=/home/ubuntu/python/scrapy-zhihu
        version=mongo
 
-- name: deploy account
-  template: src=account.py  dest=/home/ubuntu/python/scrapy-zhihu/zhihu/account.py
-
-- name: deploy setting
-  template: src=settings.py dest=/home/ubuntu/python/scrapy-zhihu/zhihu/settings.py
-
-- name: edit scrapyd conf
-  template: src=scrapyd.conf dest=/etc/scrapyd/scrapyd.conf
-  sudo: yes
-
-- name: start scrapyd
-  service: name=scrapyd state=restarted
-  sudo: yes
-
-- name: deploy spider
-  shell: scrapyd-deploy scrapyd2 -p zhihu chdir=/home/ubuntu/python/scrapy-zhihu
-  

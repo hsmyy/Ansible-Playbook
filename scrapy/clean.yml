@@ -1,12 +1,12 @@
 ---
-#
 
-- hosts: inner 
+- hosts: inner
   remote_user: ubuntu
   roles:
-    - crawl
+    - clean
 
 - hosts: outer
   remote_user: ubuntu
   roles:
-    - crawl
+    - clean
+

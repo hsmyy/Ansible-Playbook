@@ -5,9 +5,10 @@
   remote_user: ubuntu
   roles:
     - deploy
+    - config
 
 - hosts: outer
   remote_user: ubuntu
   roles:
     - deploy
-
+    - config
